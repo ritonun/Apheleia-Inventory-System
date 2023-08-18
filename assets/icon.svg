@@ -7,9 +7,9 @@
    viewBox="0 0 210 297"
    version="1.1"
    id="svg5"
-   inkscape:export-filename="image.png"
-   inkscape:export-xdpi="11.211035"
-   inkscape:export-ydpi="11.211035"
+   inkscape:export-filename="icon.png"
+   inkscape:export-xdpi="5.6055174"
+   inkscape:export-ydpi="5.6055174"
    inkscape:version="1.2.2 (732a01da63, 2022-12-09)"
    sodipodi:docname="icon.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
@@ -28,7 +28,7 @@
      inkscape:document-units="mm"
      showgrid="false"
      inkscape:zoom="0.66142459"
-     inkscape:cx="64.255247"
+     inkscape:cx="62.743358"
      inkscape:cy="455.07833"
      inkscape:window-width="1366"
      inkscape:window-height="705"
@@ -42,23 +42,27 @@
      inkscape:label="Calque 1"
      inkscape:groupmode="layer"
      id="layer1">
-    <circle
-       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:15;stroke-dasharray:none;stroke-opacity:1"
-       id="path111"
-       cy="92.211426"
-       cx="87.119995"
-       r="65" />
     <text
        xml:space="preserve"
-       style="font-size:149.874px;fill:none;fill-opacity:1;stroke:#000000;stroke-width:2.1242;stroke-dasharray:none;stroke-opacity:1"
-       x="37.900284"
+       style="font-size:149.874px;fill:#3d0000;fill-opacity:1;stroke:#000000;stroke-width:2.1242;stroke-dasharray:none;stroke-opacity:1"
+       x="39.482605"
        y="137.95441"
        id="text876"
-       transform="scale(1.0112239,0.98890066)"><tspan
+       transform="scale(1.0112239,0.98890067)"><tspan
          sodipodi:role="line"
          id="tspan874"
-         style="font-size:149.874px;stroke-width:2.1242;stroke-dasharray:none"
-         x="37.900284"
+         style="font-size:149.874px;fill:#3d0000;fill-opacity:1;stroke-width:2.1242;stroke-dasharray:none"
+         x="39.482605"
          y="137.95441">A</tspan></text>
   </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="Calque 2" />
+  <circle
+     style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:15;stroke-dasharray:none;stroke-opacity:1"
+     id="path111"
+     cy="90.40461"
+     cx="87.204453"
+     r="65" />
 </svg>
