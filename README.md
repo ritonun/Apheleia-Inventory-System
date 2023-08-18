@@ -11,5 +11,7 @@ Apheleia is a minimalist inventory management system centered around hobbyists e
 
 ## Versions
 ### v0.1
+- [ ] Implement database
+- [ ] Logging information to follow database evolution
 - [ ] Add/remove component from inventory
 - [ ] Show & sort inventory
