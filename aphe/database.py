@@ -1,11 +1,22 @@
 import sqlite3
-from component import Component
+import os.path
+from log import logger
 
 
 class DatabaseInterface:
     def __init__(self, path=":memory:"):
+        db_exist = self.check_db_exist(path)
         self.conn = sqlite3.connect(path)
         self.cur = self.conn.cursor()
+
+        if not db_exist:
+            self.create_table()
+
+    def check_db_exist(self, path):
+        exist = False
+        if os.path.isfile(path):
+            exist = True
+        return exist
 
     def create_table(self):
         self.cur.execute("""CREATE TABLE inventory(
@@ -13,6 +24,7 @@ class DatabaseInterface:
             category text,
             quantity integer
             )""")
+        logger.info("Created table \'inventory\'")
 
     def execute(self, query, data):
         with self.conn:
@@ -47,21 +59,4 @@ class DatabaseInterface:
 
     def quit(self):
         self.conn.close()
-
-
-if __name__ == '__main__':
-    db = DatabaseInterface()
-    db.create_table()
-
-    comp1 = Component("100k", "Resistor")
-    comp2 = Component("UNO", "Arduino")
-
-    db.insert_component(comp1, 10)
-    db.insert_component(comp2, 1)
-
-    db.show_table()
-
-    db.update_quantity(comp1, 5)
-    db.operation_quantity(comp2, -2)
-
-    db.show_table()
+        logger.info("Database connector close")
