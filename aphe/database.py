@@ -35,26 +35,58 @@ class DatabaseInterface:
             self.cur.execute("INSERT INTO inventory VALUES (:name, :category, :quantity)",
                         {"name": comp.name, "category": comp.category, "quantity": quantity})
 
-    def update_quantity(self, comp, quantity):
+    def update_quantity(self, name, category, quantity):
         with self.conn:
             self.cur.execute("""UPDATE inventory SET quantity=:quantity
                                 WHERE name=:name AND category=:category""",
-                                {"name": comp.name, "category": comp.category, "quantity": quantity})
+                                {"name": name, "category": category, "quantity": quantity})
 
-    def operation_quantity(self, comp, number):
-        self.cur.execute("SELECT * FROM inventory WHERE name=:name", {"name": comp.name})
+    def operation_quantity(self, name, category, number):
+        self.cur.execute("SELECT * FROM inventory WHERE name=:name AND category=:category", 
+                            {"name": name, "category": category})
         quantity = self.cur.fetchone()[2]
         with self.conn:
             self.cur.execute("""UPDATE inventory SET quantity=:quantity
                                 WHERE name=:name AND category=:category""",
-                                {"name": comp.name, "category": comp.category, "quantity": quantity + number})
+                                {"name": name, "category": category, "quantity": quantity + number})
 
-    def show_table(self):
+    def print_table(self):
         self.cur.execute("SELECT * FROM inventory")
         table = self.cur.fetchall()
-        print('VALUE | CATEGORY | QTITY')
-        for i in table:
-            print(i[0] + " | " + i[1] + " | " + str(i[2]))
+
+        element = []
+        length_list = []
+        for i in range(len(table[0])):
+            element.append([])
+            length_list.append([])
+
+        for count, component in enumerate(table):
+            for index in range(len(component)):
+                element[index].append(str(component[index]))
+
+        for index in range(len(element)):
+            length_list[index] = len(max(element[index], key=len))
+
+        separator = " | "
+
+        labels = ["NAME", "CATEGORY", "QUANTITY"]
+        for i in range(len(labels)):
+            if length_list[i] < len(labels[i]):
+                length_list[i] = len(labels[i])
+
+            end = separator
+            if i == len(labels) - 1:
+                end = "\n"
+
+            print(labels[i] + " " * (length_list[i] - len(labels[i])), end=end )
+
+        for i in range(len(element[0])):
+            for j in range(len(element)):
+                end = separator
+                if j == len(element) - 1:
+                    end = "\n"
+                print(element[j][i] + " " * (length_list[j] - len(element[j][i])), end=end)
+
         return table
 
     def quit(self):
