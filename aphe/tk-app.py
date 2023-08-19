@@ -1,6 +1,5 @@
 import tkinter as tk
-from tkinter import ttk
-from settings import icon_path
+from settings import icon_path, COLORS
 
 
 class App(tk.Tk):
@@ -11,18 +10,20 @@ class App(tk.Tk):
         icon = tk.PhotoImage(file=icon_path)
         self.iconphoto(False, icon)
 
-        self.title_bar = TitleBar()
+        self.title_bar = TitleBar(bg=COLORS["bg"])
 
 
-class TitleBar(ttk.Frame):
+class TitleBar(tk.Frame):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.place(x=0, y=0, relwidth=1, relheight=0.2)
+        self.place(x=0, y=0, relwidth=1, relheight=0.1)
 
         self.create_widgets()
 
     def create_widgets(self):
-        label = ttk.Label(self, text="Apheleia").grid(row=0, column=0)
+        self.columnconfigure((0, 1, 2), weight=1)
+        label = tk.Label(self, text="APHELEIA", fg="white", bg="black", font=72)
+        label.grid(row=0, column=1)
 
 
 if __name__ == '__main__':
