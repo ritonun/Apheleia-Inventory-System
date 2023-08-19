@@ -50,6 +50,11 @@ class DatabaseInterface:
                                 WHERE value=:value AND category=:category""",
                                 {"value": value, "category": category, "quantity": quantity + number})
 
+    def fetch_all_table(self):
+        self.cur.execute("SELECT * FROM inventory")
+        table = self.cur.fetchall()
+        return table
+
     def print_table(self):
         self.cur.execute("SELECT * FROM inventory")
         table = self.cur.fetchall()
