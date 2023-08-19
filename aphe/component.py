@@ -1,6 +1,6 @@
 
 
 class Component:
-    def __init__(self, name, category):
-        self.name = name
+    def __init__(self, value, category):
+        self.value = value
         self.category = category

@@ -20,7 +20,7 @@ class DatabaseInterface:
 
     def create_table(self):
         self.cur.execute("""CREATE TABLE inventory(
-            name text,
+            value text,
             category text,
             quantity integer
             )""")
@@ -32,23 +32,23 @@ class DatabaseInterface:
 
     def insert_component(self, comp, quantity):
         with self.conn:
-            self.cur.execute("INSERT INTO inventory VALUES (:name, :category, :quantity)",
-                        {"name": comp.name, "category": comp.category, "quantity": quantity})
+            self.cur.execute("INSERT INTO inventory VALUES (:value, :category, :quantity)",
+                        {"value": comp.value, "category": comp.category, "quantity": quantity})
 
-    def update_quantity(self, name, category, quantity):
+    def update_quantity(self, value, category, quantity):
         with self.conn:
             self.cur.execute("""UPDATE inventory SET quantity=:quantity
-                                WHERE name=:name AND category=:category""",
-                                {"name": name, "category": category, "quantity": quantity})
+                                WHERE value=:value AND category=:category""",
+                                {"value": value, "category": category, "quantity": quantity})
 
-    def operation_quantity(self, name, category, number):
-        self.cur.execute("SELECT * FROM inventory WHERE name=:name AND category=:category", 
-                            {"name": name, "category": category})
+    def operation_quantity(self, value, category, number):
+        self.cur.execute("SELECT * FROM inventory WHERE value=:value AND category=:category", 
+                            {"value": value, "category": category})
         quantity = self.cur.fetchone()[2]
         with self.conn:
             self.cur.execute("""UPDATE inventory SET quantity=:quantity
-                                WHERE name=:name AND category=:category""",
-                                {"name": name, "category": category, "quantity": quantity + number})
+                                WHERE value=:value AND category=:category""",
+                                {"value": value, "category": category, "quantity": quantity + number})
 
     def print_table(self):
         self.cur.execute("SELECT * FROM inventory")
@@ -69,7 +69,7 @@ class DatabaseInterface:
 
         separator = " | "
 
-        labels = ["NAME", "CATEGORY", "QUANTITY"]
+        labels = ["VALUE", "CATEGORY", "QUANTITY"]
         for i in range(len(labels)):
             if length_list[i] < len(labels[i]):
                 length_list[i] = len(labels[i])
