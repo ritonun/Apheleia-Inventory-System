@@ -1,14 +1,11 @@
 from log import logger
-from database import DatabaseInterface
-from component import Component
-from settings import db_path
+from tkapp import App
 
 
 if __name__ == '__main__':
     logger.info('--- START OF PROGRAM ---')
 
-    db = DatabaseInterface(path=db_path)
-    db.print_table()
-    db.quit()
+    app = App()
+    app.mainloop()
 
     logger.info('--- END OF PROGRAM ---\n')
