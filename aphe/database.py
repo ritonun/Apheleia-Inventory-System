@@ -1,6 +1,7 @@
 import sqlite3
 import os.path
 from log import logger
+from settings import table_label
 
 
 class DatabaseInterface:
@@ -74,7 +75,7 @@ class DatabaseInterface:
 
         separator = " | "
 
-        labels = ["VALUE", "CATEGORY", "QUANTITY"]
+        labels = table_label
         for i in range(len(labels)):
             if length_list[i] < len(labels[i]):
                 length_list[i] = len(labels[i])
